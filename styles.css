@@ -1,0 +1,33 @@
+/* Size message form control (Bootstrap no te permite cambiar height de text-area in-line) */
+.form-floating > .form-control {
+    resize: none;
+    height: 100px;
+}
+
+/* Credit card types size and grayscale */
+.card-pictures {
+    width: 25px;
+    height: 20px;
+    filter: grayscale(100%);
+}
+
+/* Check marks Credit card */
+.check-mark {
+    color: green;
+    visibility: hidden;
+}
+
+.x-mark {
+    color: red;
+    visibility: hidden;
+}
+
+/* Alert visibility */
+
+.success-alert {
+    visibility: hidden;
+}
+
+.error-alert {
+    visibility: visible;
+}

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="card text-center mx-auto mt-5 w-50">
+        <!-- Header -->
+        <div class="card-header text-start p-3">
+            <h3 class="">Payment form example</h3>
+        </div>
+        <!-- Body -->
+        <div class="card-body text-start">
+            <!-- Alerts -->
+            <div class="alert-container position-relative">
+                <div class="alert alert-danger d-flex flex-row gap-2 position-absolute w-100 error-alert" id="error-alert" role="alert">
+                    <i class="fa-solid fa-triangle-exclamationalign-content-center"></i>
+                    <p class="mb-0">Some fields are missing</p>
+                </div>
+                <div class="alert alert-success d-flex flex-row gap-2 success-alert" id="success-alert" role="alert">
+                    <i class="fa-solid fa-check align-content-center"></i>
+                    <p class="mb-0">All fields are filled correctly</p>
+                </div>
+            </div>
+            <!-- First row -->
+            <form class="row g-3" id="card-form" action="/card-payment" method="post">
+                <!-- Card Number-->
+                <div class="col-md-6">
+                    <div>
+                        <label for="card-number" class="form-label">Card</label>
+                        <i class="fa-solid fa-circle-check position-absolute mt-1 ms-1 check-mark check-mark-ccard" id="check-mark-ccard" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Everything is looking good!" data-bs-trigger="hover"></i>
+                        <i class="fa-solid fa-circle-xmark position-absolute mt-1 ms-1 x-mark x-mark-ccard" id="x-mark-ccard" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Please check the numbers again! They might not be following the Luhn algorithm..." data-bs-trigger="hover"></i>
+                    </div>
+                    <input type="text" class="form-control" id="card-number" name="card-number" placeholder="XXXXXXXXXXXXXXXX" maxlength="16" oninput="onlyNumbers(this), checkCardNumber(this), alertChange()" required>
+                </div>
+                <!-- CVC Number -->
+                <div class="col-md-2">
+                    <div>
+                        <label for="cvc" class="form-label">CVC</label>
+                        <i class="fa-solid fa-circle-check position-absolute mt-1 ms-1 check-mark check-mark-cvc" id="check-mark-cvc" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Everything is looking good!" data-bs-trigger="hover"></i>
+                        <i class="fa-solid fa-circle-xmark position-absolute mt-1 ms-1 x-mark x-mark-cvc" id="x-mark-cvc" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Needs to be 3 numbers!" data-bs-trigger="hover"></i>
+                    </div>
+                    <input type="text" class="form-control" id="cvc" name="cvc" placeholder="000" maxlength="3" oninput="onlyNumbers(this), checkCVCnumber(this),alertChange()" required>
+                </div>
+                <!-- Amount number -->
+                <div class="col-md-4">
+                    <div>
+                        <label for="amount" class="form-label">Amount</label>
+                        <i class="fa-solid fa-circle-check position-absolute mt-1 ms-1 check-mark check-mark-amount" id="check-mark-amount" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Everything is looking good!" data-bs-trigger="hover"></i>
+                        <i class="fa-solid fa-circle-xmark position-absolute mt-1 ms-1 x-mark x-mark-amount" id="x-mark-amount" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Cannot be 0!" data-bs-trigger="hover"></i>
+                    </div>
+                    <div class="row g-0 align-items-center">
+                        <div class="col-auto">
+                            <select name="currency" id="currency" class="form-select">
+                                <option value="euro">€</option>
+                                <option value="dollar">$</option>
+                                <option value="pounds">£</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount" maxlength="4" oninput="onlyNumbers(this), checkAmountNumber(this), alertChange()" required>
+                        </div>
+                    </div>
+                </div>
+            <!-- Second Row -->
+                <!-- First Name -->
+                <div class="col-md-6">
+                    <label for="fname" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="fname" name="fname" autocomplete="given-name" oninput="onlyLetters(this), checkFirstName(this), alertChange()" required>
+                </div>
+                <!-- Last Name -->
+                <div class="col-md-6">
+                    <label for="lname" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="lname" name="lname"  autocomplete="family-name" oninput="onlyLetters(this), checkLastName(this), alertChange()" required>
+                </div>
+            <!-- Third Row -->
+                <!-- City -->
+                <div class="col-md-6">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" name="city" oninput="onlyLetters(this), checkCity(this), alertChange()" required>
+                </div>
+                <!-- State -->
+                <div class="col-md-3">
+                    <label for="state" class="form-label">State</label>
+                    <select class="form-select" id="state" name="state" onchange="checkState(this), alertChange()" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option value="andalucia">Andalucía</option>
+                        <option value="aragon">Aragón</option>
+                        <option value="canarias">Canarias</option>
+                        <option value="cantabria">Cantabria</option>
+                        <option value="castilla-la-mancha">Castilla-La Mancha</option>
+                        <option value="castilla-y-leon">Castilla y León</option>
+                        <option value="cataluna">Cataluña</option>
+                        <option value="madrid">Comunidad de Madrid</option>
+                        <option value="navarra">Comunidad Foral de Navarra</option>
+                        <option value="valencia">Comunitat Valenciana</option>
+                        <option value="extremadura">Extremadura</option>
+                        <option value="galicia">Galicia</option>
+                        <option value="illes-balears">Illes Balears</option>
+                        <option value="la-rioja">La Rioja</option>
+                        <option value="pais-vasco">País Vasco o Euskadi</option>
+                        <option value="asturias">Principado de Asturias</option>
+                        <option value="murcia">Región de Murcia</option>
+                    </select>
+                </div>
+                <!-- Postal code -->
+                <div class="col-md-3">
+                    <label for="postal-code" class="form-label">Postal Code</label>
+                    <input type="text" class="form-control" id="postal-code" name="postal-code" maxlength="5" oninput="onlyNumbers(this), checkPostalNumber(this), alertChange()" required>
+                </div>
+            <!-- Fourth Row -->
+                <!-- Credit card types -->
+                <div class="col-md-6">
+                    <label for="card-type" class="mb-3">We accept:</label>
+                    <div class="col-6">
+                        <div class="container-fluid d-flex bg-secondary rounded-1 p-2">
+                            <div class="row">
+                                <div class="col-3 d-flex align-items-center">
+                                    <input type="radio" name="card-type" id="mastercard" value="mastercard" onclick="updateColorCardMastercard(), alertChange()" required>
+                                    <label for="mastercard" class="ms-1">
+                                        <img src="https://www.moneybob.com/wp-content/uploads/mastercard_espana-300x208.jpg" alt="mastercard logo" class="card-pictures" id="mastercard-img">
+                                    </label>
+                                </div>
+                                <div class="col-3 d-flex align-items-center">
+                                    <input type="radio" name="card-type" id="visa" value="visa" onclick="updateColorCardVisa(), alertChange()">
+                                    <label for="visa" class="ms-1">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Old_Visa_Logo.svg/545px-Old_Visa_Logo.svg.png" alt="visa logo" class="card-pictures" id="visa-img">
+                                    </label>
+                                </div>
+                                <div class="col-3 d-flex align-items-center">
+                                    <input type="radio" name="card-type" id="american-express" value="american-express" onclick="updateColorCardAmericanExpress(), alertChange()">
+                                    <label for="american-express" class="ms-1">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1024px-American_Express_logo_%282018%29.svg.png" alt="american-express logo" class="card-pictures" id="american-express-img">
+                                    </label>
+                                </div>
+                                <div class="col-3 d-flex align-items-center">
+                                    <input type="radio" name="card-type" id="paypal" value="paypal" onclick="updateColorCardPaypal(), alertChange()">
+                                    <label for="paypal" class="ms-1">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/PayPal_2024_%28Icon%29.svg/800px-PayPal_2024_%28Icon%29.svg.png" alt="paypal logo" class="card-pictures" id="paypal-img">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Message -->
+                <div class="col-md-6 d-flex flex-column">
+                    <label for="floatingTextarea" class="message flex-fill w-100 mb-2">Message (optional)</label>
+                    <div class="form-floating">
+                        <textarea class="text-area-form form-control p-1 " placeholder="Leave a comment here" id="floatingTextarea" name="message"></textarea>
+                    </div>
+                    <p class="text-secondary">Add any notes here</p>
+                </div>
+            </form>
+        </div>
+        <!-- Footer (Cancel + Send) -->
+        <div class="card-footer text-body-secondary d-flex justify-content-end">
+            <div id="output-box"></div>
+            <button class="btn btn-dark me-2" onclick= "window.location.reload()">Cancel</button>
+            <button type="submit" id="send-button" class="btn btn-primary" form="card-form" onclick="checkCardNumber()">Send</button>
+        </div> 
+    </div>
+
+
+    <!-- JS scripts start -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+    <script src="scripts.js"></script>
+    <!-- JS scripts start -->
+</body>
+
+</html>
