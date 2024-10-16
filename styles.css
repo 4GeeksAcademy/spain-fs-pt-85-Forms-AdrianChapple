@@ -4,11 +4,22 @@
     height: 100px;
 }
 
+/* Scrollable dropdown menu for states */
+
 /* Credit card types size and grayscale */
 .card-pictures {
-    width: 25px;
-    height: 20px;
+    width: 28px;
+    height: 22px;
     filter: grayscale(100%);
+}
+
+/* Custom Credit card types size for small screens  */
+
+@media (max-width: 768px) {
+    .card-pictures {
+        width: 48px;
+        height: 35px;
+    }
 }
 
 /* Check marks Credit card */
@@ -30,4 +41,44 @@
 
 .error-alert {
     visibility: visible;
+}
+
+/* Responsive screen values */
+
+.payment {
+    width: 90%;
+}
+
+
+@media (min-width: 576px) {
+    .payment {
+        width: 90%; 
+    }
+}
+
+
+@media (min-width: 768px) {
+    .payment {
+        width: 90%; 
+    }
+}
+
+@media (min-width: 992px) {
+    .payment {
+        width: 80%;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .payment {
+        width: 70%; 
+    }
+}
+
+
+@media (min-width: 1400px) {
+    .payment {
+        width: 60%;
+    }
 }

@@ -14,7 +14,7 @@
 
 <body>
 
-    <div class="card text-center mx-auto mt-5 w-50">
+    <div class="card text-center payment mx-auto mt-5">
         <!-- Header -->
         <div class="card-header text-start p-3">
             <h3 class="">Payment form example</h3>
@@ -92,7 +92,7 @@
                 <!-- State -->
                 <div class="col-md-3">
                     <label for="state" class="form-label">State</label>
-                    <select class="form-select" id="state" name="state" onchange="checkState(this), alertChange()" required>
+                    <select class="form-select" id="state" name="state"  onchange="checkState(this), alertChange()" required >
                         <option selected disabled value="">Choose...</option>
                         <option value="andalucia">Andalucía</option>
                         <option value="aragon">Aragón</option>
@@ -120,32 +120,32 @@
                 </div>
             <!-- Fourth Row -->
                 <!-- Credit card types -->
-                <div class="col-md-6">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                     <label for="card-type" class="mb-3">We accept:</label>
-                    <div class="col-6">
-                        <div class="container-fluid d-flex bg-secondary rounded-1 p-2">
-                            <div class="row">
-                                <div class="col-3 d-flex align-items-center">
+                    <div class="col-xxl-8 col-xl-8 col-lg-9 col-md-10 col-sm-12 col-xs-12 col-12">
+                        <div class="container-fluid bg-secondary rounded-1 p-2 gap-1 ">
+                            <div class="row d-flex flex-nowrap justify-content-around">
+                                <div class="col-auto d-flex align-items-center">
                                     <input type="radio" name="card-type" id="mastercard" value="mastercard" onclick="updateColorCardMastercard(), alertChange()" required>
                                     <label for="mastercard" class="ms-1">
                                         <img src="https://www.moneybob.com/wp-content/uploads/mastercard_espana-300x208.jpg" alt="mastercard logo" class="card-pictures" id="mastercard-img">
                                     </label>
                                 </div>
-                                <div class="col-3 d-flex align-items-center">
+                                <div class="col-auto d-flex align-items-center">
                                     <input type="radio" name="card-type" id="visa" value="visa" onclick="updateColorCardVisa(), alertChange()">
                                     <label for="visa" class="ms-1">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Old_Visa_Logo.svg/545px-Old_Visa_Logo.svg.png" alt="visa logo" class="card-pictures" id="visa-img">
                                     </label>
                                 </div>
-                                <div class="col-3 d-flex align-items-center">
+                                <div class="col-auto d-flex align-items-center">
                                     <input type="radio" name="card-type" id="american-express" value="american-express" onclick="updateColorCardAmericanExpress(), alertChange()">
                                     <label for="american-express" class="ms-1">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1024px-American_Express_logo_%282018%29.svg.png" alt="american-express logo" class="card-pictures" id="american-express-img">
                                     </label>
                                 </div>
-                                <div class="col-3 d-flex align-items-center">
+                                <div class="col-auto d-flex align-items-center">
                                     <input type="radio" name="card-type" id="paypal" value="paypal" onclick="updateColorCardPaypal(), alertChange()">
-                                    <label for="paypal" class="ms-1">
+                                    <label for="paypal" class="ms-1 pe-0">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/PayPal_2024_%28Icon%29.svg/800px-PayPal_2024_%28Icon%29.svg.png" alt="paypal logo" class="card-pictures" id="paypal-img">
                                     </label>
                                 </div>
@@ -157,7 +157,7 @@
                 <div class="col-md-6 d-flex flex-column">
                     <label for="floatingTextarea" class="message flex-fill w-100 mb-2">Message (optional)</label>
                     <div class="form-floating">
-                        <textarea class="text-area-form form-control p-1 " placeholder="Leave a comment here" id="floatingTextarea" name="message"></textarea>
+                        <textarea class="text-area-form form-control p-1 " placeholder="Leave a comment here" id="floatingTextarea" name="message" ></textarea>
                     </div>
                     <p class="text-secondary">Add any notes here</p>
                 </div>
@@ -167,7 +167,7 @@
         <div class="card-footer text-body-secondary d-flex justify-content-end">
             <div id="output-box"></div>
             <button class="btn btn-dark me-2" onclick= "window.location.reload()">Cancel</button>
-            <button type="submit" id="send-button" class="btn btn-primary" form="card-form" onclick="checkCardNumber()">Send</button>
+            <button type="submit" id="send-button" class="btn btn-primary" form="card-form" >Send</button>
         </div> 
     </div>
 
